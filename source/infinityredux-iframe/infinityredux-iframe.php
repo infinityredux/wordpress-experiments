@@ -28,3 +28,4 @@ if ( is_admin() ) {
 	// non-admin enqueues, actions, and filters
 }
 
+include_once __DIR__ . 'includes/widget_example.php';
