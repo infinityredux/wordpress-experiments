@@ -6,15 +6,15 @@ function wpb_load_widget() {
 // add_action( 'widgets_init', 'wpb_load_widget' );
 
 // Creating the widget
-class InfinityFrameWidget extends WP_Widget {
+class InfinityReduxFrameWidget extends WP_Widget {
 
     static function init() {
-	    register_widget( 'InfinityFrameWidget' );
+	    register_widget( 'InfinityReduxFrameWidget' );
     }
 
 	function __construct() {
 		parent::__construct(
-			'InfinityFrameWidget',                  // Base ID of your widget
+			'InfinityReduxFrameWidget',                  // Base ID of your widget
 			__('InfinityRedux iFrame', 'infinityredux'),    // Widget name will appear in UI
 			array( 'description' => __( 'An iframe displaying the link specified.', 'infinityredux' ), )
 		);

@@ -1,21 +1,23 @@
 <?php
 
 /**
- * Class InfinityFrame
+ * Class InfinityRedux
  */
-class InfinityFrame {
+class InfinityRedux {
 	/**
 	 * General init function, used to setup the plugin
 	 */
 	static function init() {
 		$dir = plugin_dir_path(__DIR__);
 
-		include_once $dir . 'includes/InfinityFrameWidget.php';
+		/** @noinspection PhpIncludeInspection */
+		include_once $dir . 'includes/InfinityReduxFrameWidget.php';
 
-		add_action( 'widgets_init', array('InfinityFrameWidget', 'init') );
+		add_action( 'widgets_init', array( 'InfinityReduxFrameWidget', 'init') );
 
 		if ( is_admin() ) {
 			// Only include admin interface files if we actually need to
+			/** @noinspection PhpIncludeInspection */
 			include_once $dir . 'admin/admin.php';
 		} else {
 			// non-admin enqueues, actions, and filters
