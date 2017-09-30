@@ -10,7 +10,9 @@ class InfinityFrame {
 	static function init() {
 		$dir = plugin_dir_path(__DIR__);
 
-		include_once $dir . 'includes/widget_example.php';
+		include_once $dir . 'includes/InfinityFrameWidget.php';
+
+		add_action( 'widgets_init', array('InfinityFrameWidget', 'init') );
 
 		if ( is_admin() ) {
 			// Only include admin interface files if we actually need to

@@ -1,23 +1,22 @@
 <?php
 // Register and load the widget
 function wpb_load_widget() {
-	register_widget( 'wpb_widget' );
+
 }
-add_action( 'widgets_init', 'wpb_load_widget' );
+// add_action( 'widgets_init', 'wpb_load_widget' );
 
 // Creating the widget
-class wpb_widget extends WP_Widget {
+class InfinityFrameWidget extends WP_Widget {
+
+    static function init() {
+	    register_widget( 'InfinityFrameWidget' );
+    }
 
 	function __construct() {
 		parent::__construct(
-			// Base ID of your widget
-			'wpb_widget',
-
-			// Widget name will appear in UI
-			__('WPBeginner Widget', 'wpb_widget_domain'),
-
-			// Widget description
-			array( 'description' => __( 'Sample widget based on WPBeginner Tutorial', 'wpb_widget_domain' ), )
+			'InfinityFrameWidget',                  // Base ID of your widget
+			__('InfinityRedux iFrame', 'infinityredux'),    // Widget name will appear in UI
+			array( 'description' => __( 'An iframe displaying the link specified.', 'infinityredux' ), )
 		);
 	}
 
@@ -31,7 +30,7 @@ class wpb_widget extends WP_Widget {
 			echo $args['before_title'] . $title . $args['after_title'];
 
 		// This is where you run the code and display the output
-		echo __( 'Hello, World!', 'wpb_widget_domain' );
+		echo __( 'Hello, World!', 'infinityredux' );
 		echo $args['after_widget'];
 	}
 
@@ -41,7 +40,7 @@ class wpb_widget extends WP_Widget {
 			$title = $instance[ 'title' ];
 		}
 		else {
-			$title = __( 'New title', 'wpb_widget_domain' );
+			$title = __( 'New title', 'infinityredux' );
 		}
 		// Widget admin form
 		?>
