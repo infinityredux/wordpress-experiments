@@ -14,9 +14,9 @@ class InfinityReduxFrameWidget extends WP_Widget {
 
 	function __construct() {
 		parent::__construct(
-			'InfinityReduxFrameWidget',                  // Base ID of your widget
+			'InfinityReduxFrameWidget',                     // Base ID of your widget
 			__('InfinityRedux iFrame', 'infinityredux'),    // Widget name will appear in UI
-			array( 'description' => __( 'An iframe displaying the link specified.', 'infinityredux' ), )
+			array( 'description' => __( 'An iframe displaying a specified link.', 'infinityredux' ), )
 		);
 	}
 
@@ -27,14 +27,14 @@ class InfinityReduxFrameWidget extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 		$title = apply_filters( 'widget_title', $instance['title'] );
+		$source = apply_filters( 'widget_iframe_source', $instance['source'] );
 
 		// before and after widget arguments are defined by themes
 		echo $args['before_widget'];
 		if ( ! empty( $title ) )
 			echo $args['before_title'] . $title . $args['after_title'];
-
-		// This is where you run the code and display the output
-		echo __( 'Hello, World!', 'infinityredux' );
+        if ( ! empty( $source ) )
+            echo '<iframe src="' . $source . '"></iframe>';
 		echo $args['after_widget'];
 	}/** @noinspection PhpDocMissingReturnTagInspection */
 
@@ -44,18 +44,19 @@ class InfinityReduxFrameWidget extends WP_Widget {
      *
 	 */
 	public function form( $instance ) {
-		if ( isset( $instance[ 'title' ] ) ) {
-			$title = $instance[ 'title' ];
-		}
-		else {
-			$title = __( 'New title', 'infinityredux' );
-		}
+	    $title = isset( $instance[ 'title' ] ) ? $instance[ 'title' ] : __( 'New title', 'infinityredux' );
+        $source = isset( $instance[ 'source' ] ) ? $instance[ 'source' ] : '';
+
 		// Widget admin form
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
+        <p>
+            <label for="<?php echo $this->get_field_id( 'source' ); ?>"><?php _e( 'Link:' ); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'source' ); ?>" name="<?php echo $this->get_field_name( 'source' ); ?>" type="text" value="<?php echo esc_attr( $source ); ?>" />
+        </p>
 		<?php
 	}
 
@@ -69,6 +70,7 @@ class InfinityReduxFrameWidget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+        $instance['source'] = ( ! empty( $new_instance['source'] ) ) ? strip_tags( $new_instance['source'] ) : '';
 		return $instance;
 	}
 }
