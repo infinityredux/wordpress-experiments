@@ -4,15 +4,40 @@
  * Class InfinityFrame
  */
 class InfinityFrame {
-	static function install() {
+	/**
+	 * General init function, used to setup the plugin
+	 */
+	static function init() {
+		$dir = plugin_dir_path(__DIR__);
+
+		include_once $dir . 'includes/widget_example.php';
+
+		if ( is_admin() ) {
+			// Only include admin interface files if we actually need to
+			include_once $dir . 'admin/admin.php';
+		} else {
+			// non-admin enqueues, actions, and filters
+		}
+	}
+
+	/**
+	 * Plugin activated.
+	 */
+	static function activate() {
 
 	}
 
-	static function disable() {
+	/**
+	 * Plugin disabled.
+	 */
+	static function deactivate() {
 
 	}
 
-	static function remove() {
+	/**
+	 * Plugin uninstalled / removed.
+	 */
+	static function uninstall() {
 
 	}
 }

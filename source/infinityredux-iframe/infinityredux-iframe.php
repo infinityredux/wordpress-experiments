@@ -17,15 +17,8 @@ if ( !function_exists( 'add_action' ) ) {
 
 include_once plugin_dir_path( __FILE__ ) . 'includes/InfinityFrame.php';
 
-register_activation_hook(__FILE__, array('InfinityFrame', 'install'));
-register_deactivation_hook(__FILE__, array('InfinityFrame', 'disable'));
-register_uninstall_hook(__FILE__, array('InfinityFrame', 'remove'));
+register_activation_hook(__FILE__, array('InfinityFrame', 'activate'));
+register_deactivation_hook(__FILE__, array('InfinityFrame', 'deactivate'));
+register_uninstall_hook(__FILE__, array('InfinityFrame', 'uninstall'));
 
-if ( is_admin() ) {
-	// Only include admin interface files if we actually need to
-	include_once plugin_dir_path( __FILE__ ) . 'admin/admin.php';
-} else {
-	// non-admin enqueues, actions, and filters
-}
-
-include_once plugin_dir_path( __FILE__ ) . 'includes/widget_example.php';
+InfinityFrame::init();
