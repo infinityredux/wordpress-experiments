@@ -18,7 +18,8 @@ class InfinityRedux {
 		if ( is_admin() ) {
 			// Only include admin interface files if we actually need to
 			/** @noinspection PhpIncludeInspection */
-			include_once $dir . 'admin/admin.php';
+			include_once $dir . 'admin/InfinityReduxAdmin.php';
+			InfinityReduxAdmin::init();
 		} else {
 			// non-admin enqueues, actions, and filters
 		}

@@ -3,7 +3,7 @@
 /*
 Plugin Name: InfinityRedux Util
 Description: Created to explore Wordpress plugins, a series of utilities to add useful extras and random experiments.
-Version: 0.1
+Version: 0.2
 Author: Nick Elliott
 Plugin URI: https://portfolio.infinityredux.net/portfolio
 License: GPL3
@@ -18,8 +18,8 @@ if ( !function_exists( 'add_action' ) ) {
 /** @noinspection PhpIncludeInspection */
 include_once plugin_dir_path( __FILE__ ) . 'includes/InfinityRedux.php';
 
-register_activation_hook(__FILE__, array( 'InfinityRedux', 'activate'));
-register_deactivation_hook(__FILE__, array( 'InfinityRedux', 'deactivate'));
-register_uninstall_hook(__FILE__, array( 'InfinityRedux', 'uninstall'));
+register_activation_hook(   __FILE__, array( 'InfinityRedux', 'activate') );
+register_deactivation_hook( __FILE__, array( 'InfinityRedux', 'deactivate') );
+register_uninstall_hook(    __FILE__, array( 'InfinityRedux', 'uninstall') );
 
 InfinityRedux::init();
