@@ -14,7 +14,7 @@ class InfinityRedux {
 		include_once $dir . 'includes/InfinityReduxFrameShortcode.php';
 		include_once $dir . 'includes/InfinityReduxFrameWidget.php';
 
-		add_action( 'init', array( 'InfinityReduxFrameShortcode', 'init' ) );
+		add_action( 'init',         array( 'InfinityReduxFrameShortcode', 'init' ) );
 		add_action( 'widgets_init', array( 'InfinityReduxFrameWidget', 'init') );
 
 		if ( is_admin() ) {

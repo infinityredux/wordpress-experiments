@@ -25,8 +25,7 @@ class InfinityReduxFrameShortcode {
 
 		$out = '<iframe src="' . esc_html__($attributes['src'], 'infinityredux') . '">';
 
-		// secure output by executing the_content filter hook on $content
-		// Run shortcode parser recursively (allows codes within content)
+		// Secure output by executing the_content filter hook on $content and recursively parse for further codes
 		if (!is_null($content)) {
 			$out .= apply_filters('the_content', $content);
 			$out .= do_shortcode($content);
