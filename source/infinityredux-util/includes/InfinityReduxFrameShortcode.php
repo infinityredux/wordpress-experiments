@@ -5,8 +5,11 @@ class InfinityReduxFrameShortcode {
 	 *
 	 */
 	static function init() {
-		if (!shortcode_exists('iframe'))
-			add_shortcode('iframe', array( 'InfinityReduxFrameShortcode', 'renderShortcode' ) );
+		if (!shortcode_exists('iframe')) {
+            $options = get_option( 'infinityredux_settings' );
+            if ($options['enableShortcode'] == 1)
+                add_shortcode('iframe', array( 'InfinityReduxFrameShortcode', 'renderShortcode' ) );
+        }
 	}
 
 	/**

@@ -32,6 +32,7 @@ class InfinityReduxAdminOptions {
 			'InfinityReduxFrame',
 			'InfinityReduxFrameSection'
 		);
+		/*
 		add_settings_field(
 			'ir_text_field_1',
 			__( 'Settings field description', 'infinityredux' ),
@@ -39,6 +40,7 @@ class InfinityReduxAdminOptions {
 			'InfinityReduxFrame',
 			'InfinityReduxFrameSection'
 		);
+		*/
 	}
 
 	static function renderOptions() {
@@ -73,16 +75,18 @@ class InfinityReduxAdminOptionsFrame {
 	}
 
 	function renderEnableShortcode(  ) {
-		$options = get_option( 'ir_settings' );
+		$options = get_option( 'infinityredux_settings' );
 		?>
-        <input type='checkbox' name='ir_settings[ir_checkbox_field_0]' <?php checked( $options['ir_checkbox_field_0'], 1 ); ?> value='1'>
+        <input type='checkbox' name='infinityredux_settings[enableShortcode]' <?php checked( $options['enableShortcode'], 1 ); ?> value='1'>
 		<?php
 	}
 
+	/*
 	function ir_text_field_1_render(  ) {
 		$options = get_option( 'ir_settings' );
 		?>
         <input type='text' name='ir_settings[ir_text_field_1]' value='<?php echo $options['ir_text_field_1']; ?>'>
 		<?php
 	}
+	*/
 }
