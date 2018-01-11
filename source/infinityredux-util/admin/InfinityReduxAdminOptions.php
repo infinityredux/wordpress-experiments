@@ -32,15 +32,14 @@ class InfinityReduxAdminOptions {
 			'InfinityReduxFrame',
 			'InfinityReduxFrameSection'
 		);
-		/*
+
 		add_settings_field(
-			'ir_text_field_1',
-			__( 'Settings field description', 'infinityredux' ),
-			'ir_text_field_1_render',
+			'defaultFrameURL',
+			__( 'Default URL for an iFrame that does not specify otherwise.', 'infinityredux' ),
+            array('InfinityReduxAdminOptionsFrame', 'renderDefaultFrameURL'),
 			'InfinityReduxFrame',
 			'InfinityReduxFrameSection'
 		);
-		*/
 	}
 
 	static function renderOptions() {
@@ -71,22 +70,22 @@ class InfinityReduxAdminOptions {
 class InfinityReduxAdminOptionsFrame {
 
 	static function renderSection() {
-		echo __( 'This section description', 'infinityredux' );
+		echo __( 'Configuration options related to the iFrame plugin and shortcode.', 'infinityredux' );
 	}
 
-	function renderEnableShortcode(  ) {
+	function renderEnableShortcode() {
 		$options = get_option( 'infinityredux_settings' );
 		?>
         <input type='checkbox' name='infinityredux_settings[enableShortcode]' <?php checked( $options['enableShortcode'], 1 ); ?> value='1'>
 		<?php
 	}
 
-	/*
-	function ir_text_field_1_render(  ) {
-		$options = get_option( 'ir_settings' );
+	function renderDefaultFrameURL() {
+		$options  = get_option( 'infinityredux_settings' );
 		?>
-        <input type='text' name='ir_settings[ir_text_field_1]' value='<?php echo $options['ir_text_field_1']; ?>'>
+        <input type='text' name='infinityredux_settings[defaultFrameURL]'
+               placeholder="e.g. https://www.infinityredux.net/"
+               value='<?php echo $options['defaultFrameURL']; ?>'>
 		<?php
 	}
-	*/
 }

@@ -44,10 +44,13 @@ class InfinityReduxFrameWidget extends WP_Widget {
      *
 	 */
 	public function form( $instance ) {
-	    $title = isset( $instance[ 'title' ] ) ? $instance[ 'title' ] : __( 'New title', 'infinityredux' );
-        $source = isset( $instance[ 'source' ] ) ? $instance[ 'source' ] : '';
+        $options  = get_option( 'infinityredux_settings' );
 
-		// Widget admin form
+	    $title = isset( $instance[ 'title' ] ) ? $instance[ 'title' ] : __( 'New title', 'infinityredux' );
+        $source = isset( $instance[ 'source' ] ) ? $instance[ 'source' ] :
+            (isset($options['defaultFrameURL']) ? $options['defaultFrameURL'] : '');
+
+        // Widget admin form
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>

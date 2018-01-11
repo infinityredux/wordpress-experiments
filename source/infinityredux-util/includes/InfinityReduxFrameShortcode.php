@@ -22,8 +22,15 @@ class InfinityReduxFrameShortcode {
 	static function renderShortcode($atts = [], $content = null, $tag = '') {
 		// Ensure attribute keys are lower case and that default values exist
 		$atts = array_change_key_case((array)$atts, CASE_LOWER);
-		$attributes = shortcode_atts([
-			'src' => 'https://infinityredux.net/',
+
+		$options  = get_option( 'infinityredux_settings' );
+        if (!isset($options['defaultFrameURL']))
+            $src = 'https://infinityredux.net/';
+        else
+            $src = $options['defaultFrameURL'];
+
+        $attributes = shortcode_atts([
+			'src' => $src,
 		], $atts, $tag);
 
 		$out = '<iframe src="' . esc_html__($attributes['src'], 'infinityredux') . '">';
