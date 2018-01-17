@@ -13,34 +13,29 @@ class InfinityReduxFrameShortcode {
 	}
 
 	/**
-	 * @param array $atts
+	 * @param array $attributes
 	 * @param null $content
 	 * @param string $tag
 	 *
 	 * @return null|string
 	 */
-	static function renderShortcode($atts = [], $content = null, $tag = '') {
-		// Ensure attribute keys are lower case and that default values exist
-		$atts = array_change_key_case((array)$atts, CASE_LOWER);
-
+	static function renderShortcode($attributes = [], $content = null, $tag = '') {
 		$options  = get_option( 'infinityredux_settings' );
-        if (!isset($options['defaultFrameURL']))
-            $src = 'https://infinityredux.net/';
-        else
-            $src = $options['defaultFrameURL'];
-
-        $attributes = shortcode_atts([
-			'src' => $src,
-		], $atts, $tag);
+        $attributes = shortcode_atts(
+        	// Ensure that the default URL has been set and is not an empty string in for the default attributes
+        	[ 'src' => ((isset($options['defaultFrameURL']) and strlen($options['defaultFrameURL']) > 0) ?
+		        $options['defaultFrameURL'] : 'https://infinityredux.net/'), ],
+	        // Ensure attribute keys are lower case and that default values exist
+	        array_change_key_case((array)$attributes, CASE_LOWER),
+	        $tag
+        );
 
 		$out = '<iframe src="' . esc_html__($attributes['src'], 'infinityredux') . '">';
-
 		// Secure output by executing the_content filter hook on $content and recursively parse for further codes
 		if (!is_null($content)) {
 			$out .= apply_filters('the_content', $content);
 			$out .= do_shortcode($content);
 		}
-
 		$out .= '</iframe>';
 
 		return $out;
